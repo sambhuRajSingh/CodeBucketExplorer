@@ -30,6 +30,15 @@ class HttpClient
      */
     public function request($url, $method = 'GET', $extraParams = [])
     {
+        $extraParams = array_merge(
+            $extraParams, [
+                'auth' => [
+                    'token',
+                    env('GIT_API_RATE_LIMIT_TOKEN', '')
+                ]
+            ]
+        );
+
         $this->apiRequest = $this->guzzleHttpClient->request($method, $url, $extraParams);
 
         return $this;
