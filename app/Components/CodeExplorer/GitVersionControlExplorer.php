@@ -2,8 +2,11 @@
 
 namespace CodeExplorer\Components\CodeExplorer;
 
-use GuzzleHttp\Client as GuzzleHttpClient;
+use Log;
+use Exception;
+use CodeExplorer\Utility\HttpClient;
 use CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer;
+use CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException;
 
 class GitVersionControlExplorer implements VersionControlExplorer
 {
@@ -13,11 +16,11 @@ class GitVersionControlExplorer implements VersionControlExplorer
 
     private $repositoryName = "symfony";
 
-    private $guzzleHttpClient;
+    private $httpClient;
 
-    public function __construct(GuzzleHttpClient $guzzleHttpClient)
+    public function __construct(HttpClient $httpClient)
     {
-        $this->guzzleHttpClient = $guzzleHttpClient;
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -26,20 +29,18 @@ class GitVersionControlExplorer implements VersionControlExplorer
     public function lastCommit()
     {
         try {
+            // $url = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master";
+            $url = $this->versionRepository() . "commits/master";
 
-            // $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master";
-            $apiUrl = $this->versionRepository() . "commits/master";
+            return $this->httpClient
+                 ->request($url)
+                 ->contents();
 
-            $apiRequest = $this->guzzleHttpClient->request('GET', $apiUrl, []);
+        } catch (Exception $e) {
 
-            $commits = collect(json_decode($apiRequest->getBody()->getContents()));
+            Log::info($e->getMessage());
 
-            return $commits;
-            // foreach ($commits as $commit) {
-            //     dd($commit->commit->author);
-            // }
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+            throw new VersionControlExplorerException("Oops! Something Went Wrong. Unable to fetch last commit.");
         }
     }
 
@@ -49,9 +50,17 @@ class GitVersionControlExplorer implements VersionControlExplorer
     public function commits($howMany = 10)
     {
         try {
-            $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits?per_page=10";
-        } catch (\Exception $e) {
-            return $e->getMessage();
+            $url = $this->versionRepository() . "commits?per_page={$howMany}";
+
+            return $this->httpClient
+                 ->request($url)
+                 ->contents();
+
+        } catch (Exception $e) {
+
+            Log::info($e->getMessage());
+
+            throw new VersionControlExplorerException("Oops! Something Went Wrong. Unable to fetch Commits.");
         }
     }
 
@@ -61,6 +70,19 @@ class GitVersionControlExplorer implements VersionControlExplorer
      */
     public function contributors($howMany = 10)
     {
+        try {
+            $url = $this->versionRepository() . "contributors?per_page={$howMany}";
+
+            return $this->httpClient
+                 ->request($url)
+                 ->contents();
+
+        } catch (Exception $e) {
+
+            Log::info($e->getMessage());
+
+            throw new VersionControlExplorerException("Oops! Something Went Wrong. Unable to Load Contributors.");
+        }
     }
 
     /**
@@ -69,6 +91,19 @@ class GitVersionControlExplorer implements VersionControlExplorer
      */
     public function branches($howMany = 10)
     {
+        try {
+            $url = $this->versionRepository() . "branches?per_page={$howMany}";
+
+            return $this->httpClient
+                 ->request($url)
+                 ->contents();
+
+        } catch (Exception $e) {
+
+            Log::info($e->getMessage());
+
+            throw new VersionControlExplorerException("Oops! Something Went Wrong. Unable to Load Branches.");
+        }
     }
 
     public function versionRepository()

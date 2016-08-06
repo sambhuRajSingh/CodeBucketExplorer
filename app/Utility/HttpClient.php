@@ -45,7 +45,7 @@ class HttpClient
         $contents = $this->apiRequest->getBody()->getContents();
 
         if (!$isRaw) {
-            $contents = json_decode();
+            $contents = json_decode($contents);
         }
 
         if ($asCollection) {

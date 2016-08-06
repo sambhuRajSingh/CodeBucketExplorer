@@ -13,6 +13,7 @@ class CodeExplorerController extends Controller
     {
         $this->versionControlExplorer = $versionControlExplorer;
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,5 +23,35 @@ class CodeExplorerController extends Controller
     {
         dd($this->versionControlExplorer->lastCommit());
         return view('welcome');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function commits()
+    {
+        dd($this->versionControlExplorer->commits());
+    }
+
+    /**
+     * Display a contributor ofs the version control.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function contributors()
+    {
+        dd($this->versionControlExplorer->contributors());
+    }
+
+    /**
+     * Display a branches of the Version Control.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function branches()
+    {
+        dd($this->versionControlExplorer->branches());
     }
 }
