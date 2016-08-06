@@ -30,8 +30,8 @@ elixir(function(mix) {
         'public/css/vendor/fontawesome.css'
     )
     .copy(
-        'vendor/bower_components/fontawesome/fonts/*.{ttf,woff,eof,svg,woff2}',
-        'public/build/css/fonts'
+        'vendor/bower_components/fontawesome/fonts/*.{otf,ttf,woff,eot,svg,woff2}',
+        'public/build/fonts'
     );
 
     mix.sass('app.scss');

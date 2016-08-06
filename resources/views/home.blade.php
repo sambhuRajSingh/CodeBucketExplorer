@@ -3,6 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
+            @include('partials.alerts.notify')
+
             <table class="table">
                 <tbody>
                     @foreach($commits as $commit)

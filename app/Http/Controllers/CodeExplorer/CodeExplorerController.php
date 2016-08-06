@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use CodeExplorer\Http\Requests;
 use CodeExplorer\Http\Controllers\Controller;
 use CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer;
+use CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException;
 
 class CodeExplorerController extends Controller
 {
@@ -29,12 +30,20 @@ class CodeExplorerController extends Controller
                             ? request()->session()->get('repositoryName')
                             : 'symfony';
 
-        $commits = $this->versionControlExplorer
-                        ->owner($repositoryOwner)
-                        ->repository($repositoryName)
-                        ->commits();
+        try {
 
-        return view('home', compact('repositoryName', 'repositoryOwner', 'commits'));
+
+            $commits = $this->versionControlExplorer
+                            ->owner($repositoryOwner)
+                            ->repository($repositoryName)
+                            ->commits();
+
+            return view('home', compact('repositoryName', 'repositoryOwner', 'commits'));
+        } catch (VersionControlExplorerException $e) {
+            notify()->flash($e->getMessage(), 'danger', ['icon' => 'times']);
+
+            return view('error', compact('repositoryName', 'repositoryOwner'));
+        }
     }
 
     /**
