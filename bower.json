@@ -1,0 +1,25 @@
+{
+  "name": "Code Bucket Explorer",
+  "description": "Explore public code repository",
+  "main": "",
+  "authors": [
+    "sambhu.raj.singh@gmail.com"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "~2.2.1",
+    "fontawesome": "~4.5.0",
+    "font-awesome": "fontawesome#^4.6.3"
+  }
+}

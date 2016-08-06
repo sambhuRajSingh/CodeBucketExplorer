@@ -1,3 +1,4 @@
+require('es6-promise').polyfill();
 var elixir = require('laravel-elixir');
 
 /*
@@ -12,5 +13,36 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
+    mix.copy(
+        'vendor/bower_components/bootstrap/dist/js/bootstrap.min.js',
+        'public/js/vendor/bootstrap.min.js'
+    )
+   .copy(
+        'vendor/bower_components/jquery/dist/jquery.min.js',
+        'public/js/vendor/jquery.min.js'
+    )
+    .copy(
+        'vendor/bower_components/fontawesome/css/font-awesome.css',
+        'public/css/vendor/fontawesome.css'
+    )
+    .copy(
+        'vendor/bower_components/fontawesome/fonts/*.{ttf,woff,eof,svg,woff2}',
+        'public/build/css/fonts'
+    );
+
     mix.sass('app.scss');
+
+    mix.styles([
+            'vendor/fontawesome.css',
+            'app.css'
+        ], 'public/css/all.css', 'public/css')
+        .scripts([
+            'vendor/jquery.min.js',
+            'vendor/bootstrap.min.js',
+        ], 'public/js/all.js', 'public/js');
+
+        mix.version([
+            'public/css/all.css',
+            'public/js/all.js',
+        ]);
 });
