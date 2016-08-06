@@ -7,6 +7,12 @@ use CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer;
 
 class GitVersionControlExplorer implements VersionControlExplorer
 {
+    private $versionControlUrl = "https://api.github.com";
+
+    private $repositoryOwner = "nicolas-grekas";
+
+    private $repositoryName = "symfony";
+
     private $guzzleHttpClient;
 
     public function __construct(GuzzleHttpClient $guzzleHttpClient)
@@ -20,7 +26,9 @@ class GitVersionControlExplorer implements VersionControlExplorer
     public function lastCommit()
     {
         try {
-            $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master";
+
+            // $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master";
+            $apiUrl = $this->versionRepository() . "commits/master";
 
             $apiRequest = $this->guzzleHttpClient->request('GET', $apiUrl, []);
 
@@ -61,5 +69,12 @@ class GitVersionControlExplorer implements VersionControlExplorer
      */
     public function branches($howMany = 10)
     {
+    }
+
+    public function versionRepository()
+    {
+        return $this->versionControlUrl . '/repos/'
+               . $this->repositoryOwner . '/'
+               . $this->repositoryName . '/';
     }
 }
