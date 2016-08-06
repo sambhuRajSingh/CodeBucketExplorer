@@ -17,6 +17,10 @@ elixir(function(mix) {
         'vendor/bower_components/bootstrap/dist/js/bootstrap.min.js',
         'public/js/vendor/bootstrap.min.js'
     )
+    .copy(
+        'vendor/bower_components/bootstrap/dist/css/bootstrap.min.css',
+        'public/css/vendor/bootstrap.min.css'
+    )
    .copy(
         'vendor/bower_components/jquery/dist/jquery.min.js',
         'public/js/vendor/jquery.min.js'
@@ -34,6 +38,7 @@ elixir(function(mix) {
 
     mix.styles([
             'vendor/fontawesome.css',
+            'vendor/bootstrap.min.css',
             'app.css'
         ], 'public/css/all.css', 'public/css')
         .scripts([
