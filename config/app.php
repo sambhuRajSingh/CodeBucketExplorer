@@ -167,8 +167,8 @@ return [
         /**
          * External Vendor ServiceProvider
          */
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
         Codecourse\Notify\NotifyServiceProvider::class,
-
     ],
 
     /*
@@ -218,8 +218,8 @@ return [
         /**
          * External Vendor Facade
          */
+        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
         'Notify' => Codecourse\Notify\Facades\Notify::class,
-
     ],
 
 ];
