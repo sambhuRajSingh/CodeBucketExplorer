@@ -5,13 +5,13 @@ namespace CodeExplorer\Http\Controllers\CodeExplorer;
 use Illuminate\Http\Request;
 use CodeExplorer\Http\Requests;
 use CodeExplorer\Http\Controllers\Controller;
-use CodeExplorer\Components\CodeExplorer\GitVersionControlExplorer;
+use CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer;
 
 class CodeExplorerController extends Controller
 {
-    public function __construct(GitVersionControlExplorer $gitVersionControlExplorer)
+    public function __construct(VersionControlExplorer $versionControlExplorer)
     {
-        $this->gitVersionControlExplorer = $gitVersionControlExplorer;
+        $this->versionControlExplorer = $versionControlExplorer;
     }
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class CodeExplorerController extends Controller
      */
     public function index()
     {
-        dd($this->gitVersionControlExplorer->lastCommit());
+        dd($this->versionControlExplorer->lastCommit());
         return view('welcome');
     }
 }
