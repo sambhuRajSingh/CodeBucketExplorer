@@ -163,6 +163,11 @@ return [
         CodeExplorer\Providers\EventServiceProvider::class,
         CodeExplorer\Providers\RouteServiceProvider::class,
 
+        /**
+         * External Vendor ServiceProvider
+         */
+        Codecourse\Notify\NotifyServiceProvider::class,
+
     ],
 
     /*
@@ -208,6 +213,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /**
+         * External Vendor Facade
+         */
+        'Notify' => Codecourse\Notify\Facades\Notify::class,
 
     ],
 
