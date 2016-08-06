@@ -20,7 +20,8 @@ class CodeExplorerController extends Controller
         try {
             $client = new GuzzleHttpClient();
             // $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master?per_page=10";
-            $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits?per_page=2";
+            // $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits?per_page=2";
+            $apiUrl = "https://api.github.com/repos/sambhuWeb/smallsites/commits?per_page=2";
 
             $apiRequest = $client->request('GET', $apiUrl,
                 [
@@ -28,8 +29,11 @@ class CodeExplorerController extends Controller
                     //'auth' => ['sambhuRajSingh', '*****']
                 ]
             );
-
-            dd(collect(json_decode($apiRequest->getBody()->getContents())));
+            $commits = collect(json_decode($apiRequest->getBody()->getContents()));
+            foreach ($commits as $commit) {
+                dd($commit->commit->author);
+            }
+            pp($commits->items[0]);
         } catch (\Exception $e) {
             dd($e->getMessage());
         }
