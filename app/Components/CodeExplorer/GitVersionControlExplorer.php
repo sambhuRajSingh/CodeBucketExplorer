@@ -48,6 +48,20 @@ class GitVersionControlExplorer implements VersionControlExplorer
         $this->httpClient = $httpClient;
     }
 
+    public function owner($name)
+    {
+        $this->repositoryOwner = $name;
+
+        return $this;
+    }
+
+    public function repository($name)
+    {
+        $this->repositoryName = $name;
+
+        return $this;
+    }
+
     /**
      * View the last commit of the version control.
      *

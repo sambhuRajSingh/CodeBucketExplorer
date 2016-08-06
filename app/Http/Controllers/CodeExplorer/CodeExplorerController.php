@@ -21,9 +21,43 @@ class CodeExplorerController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $repositoryOwner = (request()->session()->has('repositoryOwner'))
+                            ? request()->session()->get('repositoryOwner')
+                            : 'nicolas-grekas';
+
+        $repositoryName = (request()->session()->has('repositoryName'))
+                            ? request()->session()->get('repositoryName')
+                            : 'symfony';
+
+        $commits = $this->versionControlExplorer
+                        ->owner($repositoryOwner)
+                        ->repository($repositoryName)
+                        ->commits();
+
+        return view('home', compact('repositoryName', 'repositoryOwner', 'commits'));
+    }
+
+    /**
+     * Register a new owner and repository name for the code Explorer.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->session()->put('repositoryOwner', $request->repositoryOwner);
+        $request->session()->put('repositoryName', $request->repositoryName);
+
+        return redirect()->back();
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function lastCommit()
+    {
         dd($this->versionControlExplorer->lastCommit());
-        return view('welcome');
     }
 
     /**

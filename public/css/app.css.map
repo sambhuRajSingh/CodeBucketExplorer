@@ -1,1 +1,1 @@
-{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAAA;EACI,iBAAiB,EACpB","file":"app.css","sourcesContent":[".body-container {\n    margin-top: 40px;\n}"],"sourceRoot":"/source/"}
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAAA;EACI,0BAA0B,EAC7B;;AACD;EACI,iBAAiB;EACjB,qBAAqB,EACxB;;AACD;EACI,iBAAiB,EACpB","file":"app.css","sourcesContent":[".browse-section {\n    background-color: #fbfbfb;\n}\n.browse-form {\n    margin-top: 70px;\n    padding-bottom: 20px;\n}\n.body-container {\n    margin-top: 40px;\n}"],"sourceRoot":"/source/"}
