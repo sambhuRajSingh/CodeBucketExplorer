@@ -160,6 +160,7 @@ return [
          */
         CodeExplorer\Providers\AppServiceProvider::class,
         CodeExplorer\Providers\AuthServiceProvider::class,
+        CodeExplorer\Components\CodeExplorer\Providers\CodeExplorerServiceProvider::class,
         CodeExplorer\Providers\EventServiceProvider::class,
         CodeExplorer\Providers\RouteServiceProvider::class,
 
