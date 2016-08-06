@@ -1,5 +1,5 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'CodeExplorer'], function (){
+    Route::get('/', ['uses' => 'CodeExplorerController@index']);
 });
