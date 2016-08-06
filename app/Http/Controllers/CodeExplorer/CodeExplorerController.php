@@ -21,7 +21,7 @@ class CodeExplorerController extends Controller
      */
     public function index()
     {
-        return view('index');
+        return view('home');
         dd($this->versionControlExplorer->lastCommit());
         return view('welcome');
     }

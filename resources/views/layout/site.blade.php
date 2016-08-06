@@ -26,7 +26,7 @@
 
     @include('layout.partials.nav')
 
-    <div class="container-fluid">
+    <div class="container body-container">
         @yield('content')
     </div>
 
