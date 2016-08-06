@@ -13,6 +13,11 @@ class HttpClient
      */
     private $apiRequest;
 
+    /**
+     * Create a new Http Client Instance.
+     *
+     * @return void
+     */
     public function __construct(GuzzleHttpClient $guzzleHttpClient)
     {
         $this->guzzleHttpClient = $guzzleHttpClient;
@@ -35,9 +40,13 @@ class HttpClient
      *
      * @return json|collection
      */
-    public function contents($asCollection = true)
+    public function contents($isRaw = false, $asCollection = true)
     {
-        $contents = json_decode($this->apiRequest->getBody()->getContents());
+        $contents = $this->apiRequest->getBody()->getContents();
+
+        if (!$isRaw) {
+            $contents = json_decode();
+        }
 
         if ($asCollection) {
             $commits = collect($contents);
@@ -45,5 +54,4 @@ class HttpClient
 
         return $contents;
     }
-
 }
