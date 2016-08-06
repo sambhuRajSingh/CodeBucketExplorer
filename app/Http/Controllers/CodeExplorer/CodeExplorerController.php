@@ -3,13 +3,16 @@
 namespace CodeExplorer\Http\Controllers\CodeExplorer;
 
 use Illuminate\Http\Request;
-
 use CodeExplorer\Http\Requests;
-use GuzzleHttp\Client as GuzzleHttpClient;
 use CodeExplorer\Http\Controllers\Controller;
+use CodeExplorer\Components\CodeExplorer\GitVersionControlExplorer;
 
 class CodeExplorerController extends Controller
 {
+    public function __construct(GitVersionControlExplorer $gitVersionControlExplorer)
+    {
+        $this->gitVersionControlExplorer = $gitVersionControlExplorer;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,27 +20,7 @@ class CodeExplorerController extends Controller
      */
     public function index()
     {
-        try {
-            $client = new GuzzleHttpClient();
-            // $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master?per_page=10";
-            // $apiUrl = "https://api.github.com/repos/nicolas-grekas/symfony/commits?per_page=2";
-            $apiUrl = "https://api.github.com/repos/sambhuWeb/smallsites/commits?per_page=2";
-
-            $apiRequest = $client->request('GET', $apiUrl,
-                [
-                    // 'per_page' => 10
-                    //'auth' => ['sambhuRajSingh', '*****']
-                ]
-            );
-            $commits = collect(json_decode($apiRequest->getBody()->getContents()));
-            foreach ($commits as $commit) {
-                dd($commit->commit->author);
-            }
-            pp($commits->items[0]);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
-
+        dd($this->gitVersionControlExplorer->lastCommit());
         return view('welcome');
     }
 }

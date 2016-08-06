@@ -2,7 +2,7 @@
 
 namespace CodeExplorer\Components\CodeExplorer\Contracts;
 
-interface VersionControl
+interface VersionControlExplorer
 {
     /**
      * View the last commit of the version control.
