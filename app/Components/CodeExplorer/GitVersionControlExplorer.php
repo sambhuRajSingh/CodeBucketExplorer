@@ -64,6 +64,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
 
     /**
      * View the last commit of the version control.
+     * https://api.github.com/repos/nicolas-grekas/symfony/commits/master
      *
      * @throws CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
      * @return json|collection
@@ -71,7 +72,6 @@ class GitVersionControlExplorer implements VersionControlExplorer
     public function lastCommit()
     {
         try {
-            // $url = "https://api.github.com/repos/nicolas-grekas/symfony/commits/master";
             $url = $this->versionRepository() . "commits/master";
 
             return $this->httpClient

@@ -12,5 +12,5 @@ Route::group(['namespace' => 'CodeExplorer'], function (){
 
     Route::get('/contributors', ['uses' => 'CodeExplorerController@contributors']);
 
-    Route::get('/branches', ['uses' => 'CodeExplorerController@branches']);
+    Route::get('/branches', ['uses' => 'CodeExplorerBranchController@index']);
 });
