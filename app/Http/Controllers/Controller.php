@@ -26,6 +26,13 @@ class Controller extends BaseController
      */
     protected $repositoryName;
 
+    /**
+     * Number of item to display.
+     *
+     * @var int
+     */
+    protected $howMany;
+
      /**
      * Create a new controller instance.
      *
@@ -41,8 +48,13 @@ class Controller extends BaseController
                                 ? request()->session()->get('repositoryName')
                                 : 'symfony';
 
+        $this->howMany = (request()->session()->has('howMany'))
+                         ? request()->session()->get('howMany')
+                         : '10';
+
         view()->share('repositoryOwner', $this->repositoryOwner);
         view()->share('repositoryName', $this->repositoryName);
+        view()->share('howMany', $this->howMany);
 
     }
 }

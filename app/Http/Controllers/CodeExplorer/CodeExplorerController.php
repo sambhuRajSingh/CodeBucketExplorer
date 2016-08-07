@@ -35,7 +35,7 @@ class CodeExplorerController extends Controller
             $commits = $this->versionControlExplorer
                             ->owner($this->repositoryOwner)
                             ->repository($this->repositoryName)
-                            ->commits();
+                            ->commits($this->howMany);
 
             return view('home', compact('commits'));
 
@@ -55,6 +55,7 @@ class CodeExplorerController extends Controller
     {
         $request->session()->put('repositoryOwner', $request->repositoryOwner);
         $request->session()->put('repositoryName', $request->repositoryName);
+        $request->session()->put('howMany', $request->howMany);
 
         return redirect()->back();
     }

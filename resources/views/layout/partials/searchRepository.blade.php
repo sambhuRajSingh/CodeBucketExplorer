@@ -27,6 +27,17 @@
             </div>
 
             <div class="form-group">
+                <label for="HowMany"><small>Items</small></label>
+                <br>
+                <select id="HowMany" class="form-control" name="howMany">
+                    <option value="10" {{ ($howMany == "10") ? 'selected' : ''}}>10</option>
+                    <option value="20" {{ ($howMany == "20") ? 'selected' : ''}}>20</option>
+                    <option value="50" {{ ($howMany == "50") ? 'selected' : ''}}>50</option>
+                    <option value="100" {{ ($howMany == "100") ? 'selected' : ''}}>100</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label><small>&nbsp;</small></label>
                 <br>
                 <button type="submit" class="btn btn-default">

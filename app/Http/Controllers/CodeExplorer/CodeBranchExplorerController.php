@@ -35,7 +35,7 @@ class CodeBranchExplorerController extends Controller
             $branches = $this->versionControlExplorer
                             ->owner($this->repositoryOwner)
                             ->repository($this->repositoryName)
-                            ->branches();
+                            ->branches($this->howMany);
 
             return view('branches', compact('branches'));
 

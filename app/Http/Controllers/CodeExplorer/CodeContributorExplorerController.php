@@ -35,7 +35,7 @@ class CodeContributorExplorerController extends Controller
             $contributors = $this->versionControlExplorer
                             ->owner($this->repositoryOwner)
                             ->repository($this->repositoryName)
-                            ->contributors();
+                            ->contributors($this->howMany);
 
             return view('contributors', compact('contributors'));
         } catch (VersionControlExplorerException $e) {

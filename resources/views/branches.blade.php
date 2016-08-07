@@ -11,9 +11,7 @@
                         <tr>
                             <td>
                                 <p class="lead">
-                                    <a href="
-                                        https://github.com/sambhuRajSingh/CodeBucketExplorer/tree/CodeExplorer
-                                        "
+                                    <a href="https://github.com/{{ $repositoryOwner}}/{{ $repositoryName }}/tree/{{ $branch->name }}"
                                        title="Browse the branch on the Git Hub"
                                     >
                                         {{ $branch->name}}
