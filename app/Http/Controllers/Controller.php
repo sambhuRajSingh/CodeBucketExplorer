@@ -41,5 +41,8 @@ class Controller extends BaseController
                                 ? request()->session()->get('repositoryName')
                                 : 'symfony';
 
+        view()->share('repositoryOwner', $this->repositoryOwner);
+        view()->share('repositoryName', $this->repositoryName);
+
     }
 }

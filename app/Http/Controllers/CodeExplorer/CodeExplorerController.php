@@ -37,15 +37,12 @@ class CodeExplorerController extends Controller
                             ->repository($this->repositoryName)
                             ->commits();
 
-            return view('home')->with('repositoryName', $this->repositoryName)
-                                       ->with('repositoryOwner', $this->repositoryOwner)
-                                       ->with('commits', $commits);
+            return view('home', compact('commits'));
 
         } catch (VersionControlExplorerException $e) {
             notify()->flash($e->getMessage(), 'danger', ['icon' => 'times']);
 
-            return view('error')->with('repositoryName', $this->repositoryName)
-                                ->with('repositoryOwner', $this->repositoryOwner);
+            return view('error');
         }
     }
 

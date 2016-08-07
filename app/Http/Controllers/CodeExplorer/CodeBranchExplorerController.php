@@ -37,15 +37,12 @@ class CodeBranchExplorerController extends Controller
                             ->repository($this->repositoryName)
                             ->branches();
 
-            return view('branches')->with('repositoryName', $this->repositoryName)
-                                       ->with('repositoryOwner', $this->repositoryOwner)
-                                       ->with('branches', $branches);
+            return view('branches', compact('branches'));
 
         } catch (VersionControlExplorerException $e) {
             notify()->flash($e->getMessage(), 'danger', ['icon' => 'times']);
 
-            return view('error')->with('repositoryName', $this->repositoryName)
-                                ->with('repositoryOwner', $this->repositoryOwner);
+            return view('error');
         }
     }
 }

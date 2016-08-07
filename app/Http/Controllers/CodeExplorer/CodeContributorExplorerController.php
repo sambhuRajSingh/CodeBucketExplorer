@@ -37,9 +37,7 @@ class CodeContributorExplorerController extends Controller
                             ->repository($this->repositoryName)
                             ->contributors();
 
-            return view('contributors')->with('repositoryName', $this->repositoryName)
-                                       ->with('repositoryOwner', $this->repositoryOwner)
-                                       ->with('contributors', $contributors);
+            return view('contributors', compact('contributors'));
         } catch (VersionControlExplorerException $e) {
             notify()->flash($e->getMessage(), 'danger', ['icon' => 'times']);
 
