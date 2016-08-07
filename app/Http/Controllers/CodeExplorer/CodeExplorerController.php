@@ -17,6 +17,12 @@ class CodeExplorerController extends Controller
      */
     private $versionControlExplorer;
 
+    /**
+     * Create a new code explorer controller instance.
+     *
+     * @param \CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer $versionControlExplorer     *
+     * @return void
+     */
     public function __construct(VersionControlExplorer $versionControlExplorer)
     {
         parent::__construct();
@@ -25,8 +31,9 @@ class CodeExplorerController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get a list of commits and pass it on to view.
      *
+     * @throws \CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -38,7 +45,6 @@ class CodeExplorerController extends Controller
                             ->commits($this->howMany);
 
             return view('home', compact('commits'));
-
         } catch (VersionControlExplorerException $e) {
             notify()->flash($e->getMessage(), 'danger', ['icon' => 'times']);
 
@@ -58,45 +64,5 @@ class CodeExplorerController extends Controller
         $request->session()->put('howMany', $request->howMany);
 
         return redirect()->back();
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function lastCommit()
-    {
-        dd($this->versionControlExplorer->lastCommit());
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function commits()
-    {
-        dd($this->versionControlExplorer->commits());
-    }
-
-    /**
-     * Display a contributor ofs the version control.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function contributors()
-    {
-        dd($this->versionControlExplorer->contributors());
-    }
-
-    /**
-     * Display a branches of the Version Control.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function branches()
-    {
-        dd($this->versionControlExplorer->branches());
     }
 }

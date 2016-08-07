@@ -11,7 +11,7 @@ use CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerExcept
 class GitVersionControlExplorer implements VersionControlExplorer
 {
     /**
-     * The url of version control connecting to.
+     * The url of version control.
      *
      * @return string
      */
@@ -66,7 +66,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
      * View the last commit of the version control.
      * https://api.github.com/repos/nicolas-grekas/symfony/commits/master
      *
-     * @throws CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
+     * @throws \CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
      * @return json|collection
      */
     public function lastCommit()
@@ -77,9 +77,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
             return $this->httpClient
                  ->request($url)
                  ->contents();
-
         } catch (Exception $e) {
-
             Log::info($e->getMessage());
 
             throw new VersionControlExplorerException("Oops! Something Went Wrong. Unable to fetch last commit.");
@@ -89,7 +87,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
     /**
      * View the list of commits.
      *
-     * @throws CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
+     * @throws \CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
      * @return json|collection
      */
     public function commits($howMany = 10)
@@ -100,9 +98,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
             return $this->httpClient
                  ->request($url)
                  ->contents();
-
         } catch (Exception $e) {
-
             Log::info($e->getMessage());
 
             throw new VersionControlExplorerException(
@@ -114,7 +110,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
     /**
      * View the list of person who contributed to the version control.
      *
-     * @throws CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
+     * @throws \CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
      * @return json|collection
      */
     public function contributors($howMany = 10)
@@ -125,9 +121,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
             return $this->httpClient
                  ->request($url)
                  ->contents();
-
         } catch (Exception $e) {
-
             Log::info($e->getMessage());
 
             throw new VersionControlExplorerException(
@@ -150,9 +144,7 @@ class GitVersionControlExplorer implements VersionControlExplorer
             return $this->httpClient
                  ->request($url)
                  ->contents();
-
         } catch (Exception $e) {
-
             Log::info($e->getMessage());
 
             throw new VersionControlExplorerException(

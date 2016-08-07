@@ -55,6 +55,5 @@ class Controller extends BaseController
         view()->share('repositoryOwner', $this->repositoryOwner);
         view()->share('repositoryName', $this->repositoryName);
         view()->share('howMany', $this->howMany);
-
     }
 }

@@ -26,7 +26,7 @@ class HttpClient
     /**
      * Make a api requst on the provided url.
      *
-     * @return CodeExplorer\Utility\HttpClient
+     * @return \CodeExplorer\Utility\HttpClient
      */
     public function request($url, $method = 'GET', $extraParams = [])
     {
@@ -45,7 +45,7 @@ class HttpClient
     }
 
     /**
-     * Parse the api json.
+     * Parse the api to get the content.
      *
      * @return json|collection
      */

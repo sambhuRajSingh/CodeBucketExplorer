@@ -15,14 +15,14 @@ interface VersionControlExplorer
     public function commits($howMany = 10);
 
     /**
-     * View the list of person who contributed to
-     * the version control.
+     * View the list of person who contributed to the version control.
+     *
      */
     public function contributors($howMany = 10);
 
     /**
-     * View the branches associated with the version
-     * control.
+     * View the branches associated with the version control.
+     *
      */
     public function branches($howMany = 10);
 }

@@ -17,6 +17,12 @@ class CodeContributorExplorerController extends Controller
      */
     private $versionControlExplorer;
 
+    /**
+     * Create a new code contributor explorer instance.
+     *
+     * @param \CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer $versionControlExplorer     *
+     * @return void
+     */
     public function __construct(VersionControlExplorer $versionControlExplorer)
     {
         parent::__construct();
@@ -25,8 +31,9 @@ class CodeContributorExplorerController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get a list of contributors and pass it on to view.
      *
+     * @throws \CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerException
      * @return \Illuminate\Http\Response
      */
     public function index()
