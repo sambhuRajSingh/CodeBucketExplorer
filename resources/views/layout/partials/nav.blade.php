@@ -19,12 +19,17 @@
                        role="button"
                        aria-expanded="false"
                     >
-                        Browse More<span class="caret"></span>
+                        More<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="{{ url('/branches') }}">Branches</a>
-                            <a href="{{ url('/contributors') }}">Contrubutors</a>
+                            <a href="{{ url('/branches') }}">
+                                <i class="fa fa-code-fork" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Branches
+                            </a>
+
+                            <a href="{{ url('/contributors') }}">
+                                <i class="fa fa-users" aria-hidden="true"></i>&nbsp;Contrubutors
+                            </a>
                         </li>
                     </ul>
                 </li>

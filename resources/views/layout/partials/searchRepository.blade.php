@@ -40,8 +40,8 @@
             <div class="form-group">
                 <label><small>&nbsp;</small></label>
                 <br>
-                <button type="submit" class="btn btn-default">
-                    Browse
+                <button type="submit" class="btn btn-default btn-info">
+                    <i class="fa fa-github" aria-hidden="true"></i> Browse
                 </button>
             </div>
         </form>
