@@ -10,8 +10,17 @@ use CodeExplorer\Components\CodeExplorer\Exceptions\VersionControlExplorerExcept
 
 class CodeBranchExplorerController extends Controller
 {
+    /**
+     * Instance of the Version Control Explorer.
+     *
+     * @return CodeExplorer\Components\CodeExplorer\Contracts\VersionControlExplorer;
+     */
+    private $versionControlExplorer;
+
     public function __construct(VersionControlExplorer $versionControlExplorer)
     {
+        parent::__construct();
+
         $this->versionControlExplorer = $versionControlExplorer;
     }
 
@@ -22,27 +31,21 @@ class CodeBranchExplorerController extends Controller
      */
     public function index()
     {
-        $repositoryOwner = (request()->session()->has('repositoryOwner'))
-                            ? request()->session()->get('repositoryOwner')
-                            : 'nicolas-grekas';
-
-        $repositoryName = (request()->session()->has('repositoryName'))
-                            ? request()->session()->get('repositoryName')
-                            : 'symfony';
-
         try {
-
-
             $branches = $this->versionControlExplorer
-                            ->owner($repositoryOwner)
-                            ->repository($repositoryName)
+                            ->owner($this->repositoryOwner)
+                            ->repository($this->repositoryName)
                             ->branches();
 
-            return view('branches', compact('repositoryName', 'repositoryOwner', 'branches'));
+            return view('branches')->with('repositoryName', $this->repositoryName)
+                                       ->with('repositoryOwner', $this->repositoryOwner)
+                                       ->with('branches', $branches);
+
         } catch (VersionControlExplorerException $e) {
             notify()->flash($e->getMessage(), 'danger', ['icon' => 'times']);
 
-            return view('error', compact('repositoryName', 'repositoryOwner'));
+            return view('error')->with('repositoryName', $this->repositoryName)
+                                ->with('repositoryOwner', $this->repositoryOwner);
         }
     }
 }
