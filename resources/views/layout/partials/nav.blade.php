@@ -24,7 +24,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li>
                             <a href="{{ url('/branches') }}">Branches</a>
-                            <a href="{{ url('/collaborators') }}">Collaborators</a>
+                            <a href="{{ url('/contributors') }}">Contrubutors</a>
                         </li>
                     </ul>
                 </li>

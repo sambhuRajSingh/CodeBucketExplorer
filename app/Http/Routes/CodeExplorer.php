@@ -6,11 +6,7 @@ Route::group(['namespace' => 'CodeExplorer'], function (){
 
     Route::post('/', ['uses' => 'CodeExplorerController@store']);
 
-    Route::get('/lastCommit', ['uses' => 'CodeExplorerController@lastCommit']);
+    Route::get('/contributors', ['uses' => 'CodeContributorExplorerController@index']);
 
-    Route::get('/commits', ['uses' => 'CodeExplorerController@commits']);
-
-    Route::get('/contributors', ['uses' => 'CodeExplorerController@contributors']);
-
-    Route::get('/branches', ['uses' => 'CodeExplorerBranchController@index']);
+    Route::get('/branches', ['uses' => 'CodeBranchExplorerController@index']);
 });

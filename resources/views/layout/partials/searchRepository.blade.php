@@ -29,7 +29,9 @@
             <div class="form-group">
                 <label><small>&nbsp;</small></label>
                 <br>
-                <button type="submit" class="btn btn-default">View Commits</button>
+                <button type="submit" class="btn btn-default">
+                    Browse
+                </button>
             </div>
         </form>
     </div>
